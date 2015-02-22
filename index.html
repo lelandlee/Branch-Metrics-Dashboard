@@ -9,6 +9,9 @@
 		<!-- high Charts -->
 		<script src="http://code.highcharts.com/highcharts.js"></script>
 		<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+		<!--Google Maps API-->
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization&amp;sensor=true_or_false"></script>
 		<link rel="stylesheet" href="style.css">
 	</head>
 
@@ -18,35 +21,40 @@
 		</div>
 		<!-- <div id="pie1"></div> -->
 		<div class="content dash-grid">
-			<div id="pie2"></div>
-			<div id="container">
-				<h2>Detailed View</h2>
-				<table id="data-table">
-				  <tr>
-				    <th>Campaign ID</th>
-				    <th>Clicks</th>
-				    <th>Downloads</th>
-				    <th>Conversion</th>
-				  </tr>
-				</table>
+			<h2>Sources of Links</h2>
+			<div class="dash-section">
+				<div id="pie2"></div>
+				<div class="pie-aside">
+					<h3>Detailed View</h3>
+					<div class="table-container">
+						<table id="data-table">
+						  <tr>
+						    <th>Campaign ID</th>
+						    <th>Clicks</th>
+						    <th>Downloads</th>
+						    <th>Conversion</th>
+						  </tr>
+						</table>
+					</div>
+				</div>
 			</div>
 
-			<div id="chart1"></div>
-			<div id="chart2"></div>
+			<div class="dash-section">
+				<div id="chart1"></div>
+			</div>
 
-
-			<div id="tooltip" class="hidden">
-			  <p><strong>Important Label Heading</strong></p>
-			  <p><span id="value">100</span>%</p>
+			<h2>Location of Clicks</h2>
+			<div class="dash-section">
+				<div id="map-canvas" style="height: 500px;"></div>
 			</div>
 		</div>
-
 
 		<!-- note load all dependent JS at bottom -->
 		<script src="pie1.js"></script>
 		<script src="pie2.js"></script>
 		<script src="chart1.js"></script>
 		<script src="chart2.js"></script>
+		<script src="map.js"></script>
   </body>
 
   <script type="text/javascript">

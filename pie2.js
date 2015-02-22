@@ -72,12 +72,17 @@ function draw_pie2(dataPie2, pie_extra_data){
 		.attr("id", "title_pie2")
 		.attr("text-anchor", "middle")
 		.attr("transform","translate(" + innerRadius/6 + "," + (-innerRadius/6) + ")");
-	d3.select('#title_pie2').html("Sources of Links");
+	// d3.select('#title_pie2').html("Sources of Links");
 	svg.append("text")
 		.attr("id", "valueOutput")
 		.attr("text-anchor", "middle")
-		.attr("transform","translate(" + innerRadius/8 + "," + innerRadius/6 + ")");
-	d3.select('#valueOutput').html("Property: Value");
+		.attr("transform","translate(" + innerRadius/20 + "," + innerRadius/24 + ")");
+	d3.select('#valueOutput').html("");
+	svg.append("text")
+		.attr("id", "valueSource")
+		.attr("text-anchor", "middle")
+		.attr("transform","translate(" + innerRadius/20 + "," + (innerRadius/24 + 24) + ")");
+	d3.select('#valueSource').html("Hover to View");
 
 	svg.selectAll("path.pie2")
 	    .data(pie(dataPie2))
@@ -87,7 +92,8 @@ function draw_pie2(dataPie2, pie_extra_data){
 	    .attr("class", "pie2")
 	    .attr("fill", function(d){return colors(d.value)})
 	    .on("mouseover.value", function(d) {
-	      d3.select("#valueOutput").html(d.data.channel + " : " + parseInt(d.value/sum*100) + "%");
+	      d3.select("#valueOutput").html(parseInt(d.value/sum*100) + "%");
+	      d3.select("#valueSource").html(d.data.channel);
 	      //how to get this to run??? [it's a function], same problem as above
 	      arcTween(outerRadius + 25, 0);
 	    })
