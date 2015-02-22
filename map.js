@@ -204,7 +204,7 @@ var gradient = function() {
     g.push(last);
     return g
 }
-$.getJSON("https://api.myjson.com/bins/322n3", function(data) {
+$.getJSON("./locations_norobots.json", function(data) {
     heatmapData = [];
     for (var d = 0; d < data.ip.length; d++) {
         var x = new google.maps.LatLng(data.long[d], data.lat[d]);
