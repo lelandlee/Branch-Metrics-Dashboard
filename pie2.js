@@ -44,8 +44,11 @@ function draw_pie2(dataPie2, pie_extra_data){
 	var sum = 0;
 	for (var property in dataPie2) {
 	  sum += dataPie2[property].value;
-	} 
-
+	}
+	//generate color scheme
+	var colors = d3.scale.linear()
+			.domain([d3.min(dataPie2, function(d){return d.value}), .5 * (d3.min(dataPie2, function(d){return d.value}) + d3.mean(dataPie2, function(d){return d.value})), d3.mean(dataPie2, function(d){return d.value}), .5 * (d3.max(dataPie2, function(d){return d.value}) + d3.mean(dataPie2, function(d){return d.value})), d3.max(dataPie2, function(d){return d.value})])
+			.range(["#EA6045", "#F8CA4D", "#F5E5C0", "#3F5666", "#2F3440"]);
 	var outerRadius = w / 2.2;
 			arcWidth = w / 12;
 	    innerRadius = outerRadius/1.5 - arcWidth;
@@ -82,8 +85,9 @@ function draw_pie2(dataPie2, pie_extra_data){
 	    .each(function(d) { d.outerRadius = outerRadius - 10; })
 	    .attr("d", arc)
 	    .attr("class", "pie2")
+	    .attr("fill", function(d){return colors(d.value)})
 	    .on("mouseover.value", function(d) {
-	      d3.select("#valueOutput").html(d.data.channel + " : " + parseInt(d.value/sum*100) + "%");     
+	      d3.select("#valueOutput").html(d.data.channel + " : " + parseInt(d.value/sum*100) + "%");
 	      //how to get this to run??? [it's a function], same problem as above
 	      arcTween(outerRadius + 25, 0);
 	    })
@@ -94,7 +98,7 @@ function draw_pie2(dataPie2, pie_extra_data){
 	    	for(x in pie_extra_data){
 	    		if(pie_extra_data[x].channel.toLowerCase() == d.data.channel){
 	    			//console.log(pie_extra_data[x].clicks + " : " + pie_extra_data[x].installs)
-	    			console.log(pie_extra_data[x].id);
+	    			// console.log(pie_extra_data[x].id);
 
 	    			updateTable([
 	    				pie_extra_data[x].id,
@@ -117,7 +121,7 @@ function draw_pie2(dataPie2, pie_extra_data){
 	}
 
 	function clearTable(){
-		$("#data-table td").remove(); 
+		$("#data-table td").remove();
 	}
 	function updateTable(data) {
     var table = document.getElementById("data-table");
@@ -128,6 +132,6 @@ function draw_pie2(dataPie2, pie_extra_data){
 	    cell.innerHTML = data[i];
     }
     var cell = row.insertCell(3);
-	   cell.innerHTML = data[2]/data[1]*100 + "%";
+	   cell.innerHTML = (data[1]) == 0 ? "0.0%" : (data[2]/data[1]*100).toFixed(1) + "%";
 	}
 }

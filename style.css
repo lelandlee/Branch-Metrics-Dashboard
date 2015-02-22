@@ -1,3 +1,13 @@
+body, html  {
+  /*Global styles*/
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Verdana, sans-serif;
+  line-height: 1.6;
+}
+.dash-grid  {
+  max-width: 60rem; /*960px*/
+  width: 85%;
+  margin: auto;
+}
 #chart1 {
 	float: left;
 	border: 2px dashed black;
@@ -12,7 +22,6 @@
 }
 
 text.valueTop, text.valueBottom {
-	font-family: sans-serif;
 	font-size: 11px;
 	fill: black;
 	text-anchor: middle;
@@ -60,24 +69,10 @@ path.pie1 {
 
 #tooltip p {
   margin: 0;
-  font-family: sans-serif;
   font-size: 16px;
   line-height: 20px;
 }
 
-path.pie2 {
-  fill: #ccc;
-  stroke: #333;
-  stroke-width: 1.5px;
-  transition: fill 250ms linear;/*refers to when change grey->red*/
-  transition-delay: 150ms;/*refers to colour return*/
-}
-
-path.pie2:hover {
-  fill: maroon;
-  stroke: #000;
-  transition-delay: 0;
-}
 
 
 
@@ -90,7 +85,7 @@ path.pie2:hover {
   border: 1px dashed marroon;
   text-align: center;
   margin-left: 5%;
-  margin-right: 5%;  
+  margin-right: 5%;
   table-layout: fixed;
 }
 
